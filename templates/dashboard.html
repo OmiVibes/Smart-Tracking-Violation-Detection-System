@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Tracking Violation System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles2.css') }}">
+
+    <style>
+        /* Reset & General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        /* Premium Navigation Bar */
+        .navbar {
+            width: 100%;
+            background: linear-gradient(135deg, #1f1c2c, #928dab);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            text-transform: uppercase;
+        }
+
+        .navbar .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: 0.3s ease-in-out;
+        }
+
+        .navbar .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Dashboard Styling */
+        .dashboard-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            margin-top: 100px; /* Adjusted for navbar */
+            width: 90%;
+            max-width: 600px;
+        }
+
+        .dashboard-container h1 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        /* Centered Dashboard Buttons */
+        .dashboard-buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .dashboard-btn {
+            text-decoration: none;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: 0.3s ease-in-out;
+            text-align: center;
+            width: 80%;
+            max-width: 300px;
+        }
+
+        .dashboard-btn:hover {
+            background: linear-gradient(135deg, #764ba2, #667eea);
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .dashboard-btn {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Premium Navigation Bar -->
+    <div class="navbar">
+        <div class="logo">🚦 Smart Traffic Violation Detection System</div>
+        <div class="nav-links">
+            <a href="/">🏠 Home</a>
+            <a href="/history">📜 History</a>
+            <a href="/feedback">⚙ Feedback</a>
+            <a href="login.html">🔒 Logout</a>
+        </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div class="dashboard-container">
+        <h1>Smart Tracking Violation System</h1>
+        <p>Select a module to proceed:</p>
+
+        <div class="dashboard-buttons">
+            <a href="{{ url_for('helmet_detection') }}" class="dashboard-btn">⛑ Helmet Detection</a>
+            <a href="{{ url_for('one_way_detection') }}" class="dashboard-btn">🚧 One-Way Detection</a>
+            <a href="{{ url_for('triple_seat_detection') }}" class="dashboard-btn">🏍 Triple-Seat Detection</a>
+        </div>
+    </div>
+<!-- Premium Footer -->
+<footer class="footer">
+    <div class="footer-container">
+        <p>🚦 Smart Traffic Violation Detection System &copy; 2025. All Rights Reserved.</p>
+        <div class="social-icons">
+            <a href="https://facebook.com" target="_blank">📘 Facebook</a>
+            <a href="https://twitter.com" target="_blank">🐦 Twitter</a>
+            <a href="https://instagram.com" target="_blank">📸 Instagram</a>
+            <a href="https://linkedin.com" target="_blank">💼 LinkedIn</a>
+        </div>
+    </div>
+</footer>
+
+<!-- Footer Styling -->
+<style>
+    .footer {
+        background: linear-gradient(135deg, #1f1c2c, #928dab);
+        color: white;
+        text-align: center;
+        padding: 15px 0;
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .footer-container {
+        max-width: 800px;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .social-icons a {
+        color: white;
+        text-decoration: none;
+        margin: 0 10px;
+        transition: 0.3s ease-in-out;
+    }
+
+    .social-icons a:hover {
+        text-decoration: underline;
+        color: #ffcc00;
+    }
+
+    @media (max-width: 600px) {
+        .footer {
+            font-size: 14px;
+        }
+
+        .social-icons {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+    }
+</style>
+</body>
+</html>

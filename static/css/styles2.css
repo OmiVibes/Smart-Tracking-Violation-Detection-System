@@ -1,0 +1,59 @@
+/* Dashboard Page Styling */
+.dashboard-body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: white;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dashboard-container {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    width: 350px;
+}
+
+.dashboard-container h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.dashboard-container p {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.dashboard-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.dashboard-btn {
+    background: #ff9800;
+    color: white;
+    text-decoration: none;
+    padding: 12px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: 0.3s;
+    display: block;
+}
+
+.dashboard-btn:hover {
+    background: #e68900;
+}
+
+.disabled {
+    background: grey;
+    cursor: not-allowed;
+}

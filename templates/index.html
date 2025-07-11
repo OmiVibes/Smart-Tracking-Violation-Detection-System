@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helmet Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            padding-bottom: 20px;
+        }
+
+        /* Navbar */
+        .navbar {
+            width: 100%;
+            background: linear-gradient(135deg, #1f1c2c, #928dab);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            text-transform: uppercase;
+        }
+
+        .navbar .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: 0.3s ease-in-out;
+        }
+
+        .navbar .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Content Styling */
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            margin-top: 80px;
+            width: 90%;
+            max-width: 600px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        h3 {
+            margin: 15px 0;
+            color: #555;
+        }
+
+        /* Form Styling */
+        input[type="file"] {
+            display: block;
+            margin: 15px auto;
+            padding: 10px;
+            border: 2px dashed #928dab;
+            border-radius: 5px;
+            background: #f9f9f9;
+            cursor: pointer;
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s ease-in-out;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #764ba2, #667eea);
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Detected Image */
+        .detected-image {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+
+        .detection-message {
+            font-size: 18px;
+            color: #333;
+            margin-top: 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .container {
+                width: 95%;
+            }
+        }
+    </style>
+
+    <script>
+        function previewImage(event) {
+            const reader = new FileReader();
+            reader.onload = function() {
+                const output = document.getElementById("imagePreview");
+                output.src = reader.result;
+                output.style.display = "block";
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logo">🚦 Smart Violation Detection System</div>
+        <div class="nav-links">
+            <a href="/">🏠 Home</a>
+            <a href="/history">📜 History</a>
+            <a href="/settings">⚙ Settings</a>
+            <a href="/logout">🔒 Logout</a>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Helmet Detection System</h1>
+
+        <h3>Upload an image for detection:</h3>
+        <form action="{{ url_for('helmet_detection') }}" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" accept="image/*" required onchange="previewImage(event)">
+            <img id="imagePreview" style="display: none; max-width: 100%; margin-top: 10px;" alt="Image Preview">
+            <button type="submit">Upload & Detect</button>
+        </form>
+
+        {% if result_image %}
+            <h2>Detected Image</h2>
+            <img src="{{ result_image }}" alt="Detected Image" class="detected-image">
+            <p class="detection-message">{{ message }}</p>
+
+            {% if challan_pdf %}
+                <a href="{{ url_for('download_challan', filename=challan_pdf) }}" class="btn btn-danger">
+                    📄 Download Challan
+                </a>
+            {% endif %}
+        {% endif %}
+    </div>
+    <!-- Premium Footer -->
+<footer class="footer">
+    <div class="footer-container">
+        <p>🚦 Smart Violation Detection System &copy; 2025. All Rights Reserved.</p>
+        <div class="social-icons">
+            <a href="https://facebook.com" target="_blank">📘 Facebook</a>
+            <a href="https://twitter.com" target="_blank">🐦 Twitter</a>
+            <a href="https://instagram.com" target="_blank">📸 Instagram</a>
+            <a href="https://linkedin.com" target="_blank">💼 LinkedIn</a>
+        </div>
+    </div>
+</footer>
+
+<!-- Footer Styling -->
+<style>
+    .footer {
+        background: linear-gradient(135deg, #1f1c2c, #928dab);
+        color: white;
+        text-align: center;
+        padding: 15px 0;
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .footer-container {
+        max-width: 800px;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .social-icons a {
+        color: white;
+        text-decoration: none;
+        margin: 0 10px;
+        transition: 0.3s ease-in-out;
+    }
+
+    .social-icons a:hover {
+        text-decoration: underline;
+        color: #ffcc00;
+    }
+
+    @media (max-width: 600px) {
+        .footer {
+            font-size: 14px;
+        }
+
+        .social-icons {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+    }
+</style>
+</body>
+</html>

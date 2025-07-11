@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Rider Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Multi-Rider Detection</h1>
+        <p>Upload an image to detect the number of riders and check for violations.</p>
+
+        <!-- File Upload Form -->
+        <form action="{{ url_for('multi_rider_detection') }}" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" required>
+            <button type="submit">Upload & Detect</button>
+        </form>
+
+        <!-- Display Results -->
+        {% if result_image %}
+        <div class="result">
+            <h2>Detection Result:</h2>
+            <img src="{{ result_image }}" alt="Detection Result">
+            <p><strong>Message:</strong> {{ message }}</p>
+        </div>
+        {% endif %}
+        
+        <!-- Back to Dashboard -->
+        <a href="{{ url_for('dashboard') }}" class="btn">Back to Dashboard</a>
+    </div>
+</body>
+</html>

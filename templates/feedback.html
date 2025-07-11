@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Feedback Engine</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #f3f3f3;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+            margin-top: 20px;
+        }
+        .wrap {
+            width: 50%;
+            background: white;
+            padding: 20px;
+            margin: auto;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+        h2 {
+            font-size: 18px;
+            color: #555;
+            text-align: left;
+        }
+        .agile_form ul {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+        }
+        .agile_form ul li {
+            margin: 10px 0;
+        }
+        .agile_form label {
+            margin-left: 10px;
+            font-size: 16px;
+        }
+        textarea, input[type="text"], input[type="email"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        input[type="submit"] {
+            background: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        input[type="submit"]:hover {
+            background: #218838;
+        }
+        .agileits_copyright {
+            margin-top: 20px;
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Feedback Form</h1>
+    <div class="wrap">
+        <h3>Please help us to serve you better by taking a couple of minutes.</h3>
+        <form action="{{ url_for('feedback') }}" method="post" class="agile_form">
+            <h2>How satisfied were you with our service?</h2>
+            <ul>
+                <li><input type="radio" name="view" value="excellent" id="excellent" required> 
+                    <label for="excellent">Excellent</label></li>
+                <li><input type="radio" name="view" value="good" id="good"> 
+                    <label for="good">Good</label></li>
+                <li><input type="radio" name="view" value="neutral" id="neutral">
+                    <label for="neutral">Neutral</label></li>
+                <li><input type="radio" name="view" value="poor" id="poor"> 
+                    <label for="poor">Poor</label></li>
+            </ul>	  
+            <h2>If you have specific feedback, please write to us...</h2>
+            <textarea placeholder="Additional comments" name="comments" required></textarea>
+            <input type="text" placeholder="Your Name (optional)" name="name"/>
+            <input type="email" placeholder="Your Email (optional)" name="email"/>
+            <input type="text" placeholder="Your Number (optional)" name="num"/>
+            <br>
+            <input type="submit" value="Submit Feedback"/>
+        </form>
+    </div>
+    <div class="agileits_copyright">
+        <p>© 2025 Feedback Engine</p>
+    </div>
+</body>
+</html>
