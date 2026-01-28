@@ -61,3 +61,6 @@ python app.py
 
 ## 👨‍💻 Contribution
 Feel free to open issues or submit PRs to improve the system. Let's build a smarter, safer world! 🌍🚀
+
+### Contributors
+- Devanshi Lambodari
