@@ -63,4 +63,4 @@ python app.py
 Feel free to open issues or submit PRs to improve the system. Let's build a smarter, safer world! 🌍🚀
 
 ### Contributors
-- Devanshi Lambodari, i love me
+- Devanshi Lambodari
